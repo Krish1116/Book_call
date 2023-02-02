@@ -42,6 +42,21 @@ function saveToLocalStorage(e) {
 
 }
 
+window.addEventListener("DOMContentLoaded", () => {
+    axios.get('https://crudcrud.com/api/462ab6ec47224b179652985cc50a97aa/appointmentData')
+        .then((res) => {
+            for (let i = 0; i < res.data.length; i++) {
+                showOn(res.data[i]);
+            }
+            console.log(res)
+        })
+        .catch((err) => console.log(err));
+
+    // axios.delete('https://crudcrud.com/api/462ab6ec47224b179652985cc50a97aa/appointmentData')
+    //     .then((res) => showOn(res))
+    //     .catch((err) => showOn(err));
+});
+
 function showOn(obj) {
     let parentElement = document.getElementById('user');
     let childElement = document.createElement('li');
