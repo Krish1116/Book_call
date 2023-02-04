@@ -27,7 +27,7 @@ function saveToLocalStorage(e) {
     // showUserOnScreen(obj);
 
     // document.getElementById('registration').reset();
-    axios.post('https://crudcrud.com/api/421b57eebab24e84945fc918502efc92/data', obj)
+    axios.post('https://crudcrud.com/api/76ec0e024791462a91112d0d0db67fb2/data', obj)
         .then((response) => {
             showUserOnScreen(response.data);
             // console.log(response);
@@ -45,7 +45,7 @@ function saveToLocalStorage(e) {
 
 window.addEventListener('DOMContentLoaded', () => {
     axios
-        .get('https://crudcrud.com/api/421b57eebab24e84945fc918502efc92/data')
+        .get('https://crudcrud.com/api/76ec0e024791462a91112d0d0db67fb2/data')
         .then((res) => {
             for (let i = 0; i < res.data.length; i++) {
                 showUserOnScreen(res.data[i]);
@@ -90,29 +90,35 @@ function showUserOnScreen(user) {
 
     const childNode = `<li id=${user.email}> ${user.name} - ${user.email} - ${user.ph_no} - ${user.time} - ${user.date}
                                     <button onclick=deleteUser('${user._id}') class = 'button'> Delete User </button>
-                                    <button class='button-3' onclick=editUserDetails('${user._id}','${user.name}','${user.ph_no}', '${user.time}', '${user.date}')>Edit User </button>
+                                    <button class='button-3' onclick=editUserDetails('${user.email}','${user.name}','${user.ph_no}','${user.time}','${user.date}','${user._id}')>Edit User </button>
                                  </li>`
     parentNode.innerHTML = parentNode.innerHTML + childNode;
     // console.log(childNode);
 }
 //edituser
-// function editUserDetails(email, name, ph_no, time, date) {
+function editUserDetails(userID) {
+    // axios.put(`https://crudcrud.com/api/76ec0e024791462a91112d0d0db67fb2/data/${userID}`, {
+    //     title: 'New todo',
+    //     completed: false
+    // })
+    //     .then((res) => showUserOnScreen(res))
+    //     .catch((err) => console.log(err));
 
-//     document.getElementById('name').value = name;
-//     document.getElementById('email').value = email;
-//     document.getElementById('ph_no').value = ph_no;
-//     document.getElementById('time').value = time;
-//     document.getElementById('date').value = date;
+        document.getElementById('name').value = name;
+        document.getElementById('email').value = email;
+        document.getElementById('ph_no').value = ph_no;
+        document.getElementById('time').value = time;
+        document.getElementById('date').value = date;
 
-//     deleteUser(email);
-// }
+        deleteUser(userID);
+}
 
 
 
 //deleteuser
 function deleteUser(userID) {
     axios
-        .delete(`https://crudcrud.com/api/421b57eebab24e84945fc918502efc92/data/${userID}`)
+        .delete(`https://crudcrud.com/api/76ec0e024791462a91112d0d0db67fb2/data/${userID}`)
         .then((res) => {
             removeUserFromScreen(userID);
         })
