@@ -91,7 +91,7 @@ function showUserOnScreen(user) {
     const childNode = `<li id=${user.email}> ${user.name} - ${user.email} - ${user.ph_no} - ${user.time} - ${user.date}
                                     <button onclick=deleteUser('${user._id}') class = 'button'> Delete User </button>
                                     <button class='button-3' onclick=editUserDetails('${user.email}','${user.name}','${user.ph_no}','${user.time}','${user.date}','${user._id}')>Edit User </button>
-                                 </li>`
+                        </li>`
     parentNode.innerHTML = parentNode.innerHTML + childNode;
     // console.log(childNode);
 }
